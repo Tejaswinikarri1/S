@@ -1,0 +1,34 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public class SHA1Example
+{
+    public static void main(String[] args) 
+    {
+        // The text you want to hash
+        String text = "Hello, world!";
+        try 
+        {
+            // Create a MessageDigest instance with SHA-1 algorithm
+            MessageDigest MD = MessageDigest.getInstance("SHA-1");
+
+            // Compute the hash value
+            byte[] hashBytes = MD.digest(text.getBytes());
+
+            // Convert the hash bytes to a hexadecimal string
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) 
+            {
+                hexString.append(String.format("%x", b));
+            }
+
+            // Print the hexadecimal message digest
+            System.out.println("SHA-1 Message Digest: " + hexString.toString());
+
+        } 
+        catch (NoSuchAlgorithmException e) 
+        {
+            // Handle the exception if the algorithm is not available
+            System.err.println("SHA-1 algorithm not available: " + e.getMessage());
+        }
+    }
+}
